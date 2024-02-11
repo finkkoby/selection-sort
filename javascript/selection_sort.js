@@ -28,15 +28,18 @@ if (require.main === module) {
   console.log("");
 
   // BENCHMARK HERE, and print the average runtime
-  const startTime = new Date();
+  const startTime = Date.now();
   const longInput = [];
 
   for (let i = 0; i < 100; ++i) {
     longInput.push(Math.random());
   }
   for (let i = 0; i <= 1000; i++) {
-    selectionSort([2,1])
+    selectionSort([2,1]);
+    selectionSort(longInput);
   }
+  const averageTime = (Date.now() - startTime) / 2000;
+  console.log(averageTime);
 }
 
 module.exports = selectionSort;
@@ -48,3 +51,9 @@ create a recursive function that finds the lowest value in an array
   - if arr.length > 0, call itself
 
 // And a written explanation of your solution */
+/* This one was tricky because I wasn't sure the best way to approach it. I was struggling trying to figure out
+if I needed to copy the array as well as create a new one to hold my new array. Finally, I went back to my psuedocode
+and I came up with a plan I thought would work. I created a function that calls itself and with each execution, it removes the lowest number
+of the array and adds it to the answer array that is defined outside of the function. Each time the function calls itself, it checks to make sure
+that the array isn't empty before running again.
+ */
